@@ -12,23 +12,7 @@ var compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
 
 
 function resetGame() {
-    guessesRemaining = 10;
-    guessesSoFar=[];
     compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-}
-
-
-function display(){
-
-    fillWins = document.querySelector('#wins').innerHTML = wins;
-
-    fillLosses = document.querySelector('#losses').innerHTML = losses;
-
-    fillGuessesRemaining = document.querySelector('#guessesRemaining').innerHTML = guessesRemaining;
-
-    fillLettersGuessed = document.querySelector('#guessesSoFar').innerHTML = guessesSoFar.join();
-
-   
 }
 
 
@@ -37,31 +21,29 @@ function display(){
 document.onkeyup = function(event) {
 
     var userGuess = event.key;
-    if (userGuess === compLetter){
-        wins++;
 
-        function resetGame(){
+    if (userGuess === compLetter){
+            wins++;
             guessesRemaining = 10;
             guessesSoFar=[];
-            compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-            };
+            
 
     } else if (guessesRemaining - 1 === 0){
-        losses++;
-
-        function resetGame(){
+            losses++;
             guessesRemaining = 10;
             guessesSoFar=[];
             compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-            };
+      
+    
 
     } else {
         guessesRemaining--;
         guessesSoFar.push(userGuess);
-
+        fillLettersGuessed = document.querySelector('#guessesSoFar').innerHTML = guessesSoFar.join('');
+    console.log(guessesSoFar);    
     }
 
-    function display(){
+   
 
          fillWins = document.querySelector('#wins').innerHTML = wins;
     
@@ -69,14 +51,13 @@ document.onkeyup = function(event) {
     
          fillGuessesRemaining = document.querySelector('#guessesRemaining').innerHTML = guessesRemaining;
     
-         fillLettersGuessed = document.querySelector('#guessesSoFar').innerHTML = guessesSoFar.join();
+         
     
-        
-    }
+
 };
 
+
     console.log(compLetter);
-    console.log(display());
     console.log(event);
     console.log(guessesRemaining);
-    console.log(guessesSoFar);
+    
