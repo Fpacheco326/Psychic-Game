@@ -26,21 +26,24 @@ document.onkeyup = function(event) {
             wins++;
             guessesRemaining = 10;
             guessesSoFar=[];
-            
+            resetGame();
+
+ console.log(compLetter);          
 
     } else if (guessesRemaining - 1 === 0){
             losses++;
             guessesRemaining = 10;
             guessesSoFar=[];
-            compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-      
+            resetGame();
+
+ console.log(compLetter);      
     
 
     } else {
         guessesRemaining--;
         guessesSoFar.push(userGuess);
         fillLettersGuessed = document.querySelector('#guessesSoFar').innerHTML = guessesSoFar.join('');
-    console.log(guessesSoFar);    
+console.log(guessesSoFar);    
     }
 
    
