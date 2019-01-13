@@ -8,63 +8,75 @@ var losses = 0;
 
 var guessesRemaining = 10;
 
-display();
+var compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
 
-resetGame();
+
+function resetGame() {
+    guessesRemaining = 10;
+    guessesSoFar=[];
+    compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+}
+
+
+function display(){
+
+    fillWins = document.querySelector('#wins').innerHTML = wins;
+
+    fillLosses = document.querySelector('#losses').innerHTML = losses;
+
+    fillGuessesRemaining = document.querySelector('#guessesRemaining').innerHTML = guessesRemaining;
+
+    fillLettersGuessed = document.querySelector('#guessesSoFar').innerHTML = guessesSoFar.join();
+
+   
+}
+
+
+
 
 document.onkeyup = function(event) {
 
     var userGuess = event.key;
     if (userGuess === compLetter){
-        wins();
-    } else if (guessesRemaining - 1 === 0){
-        losses();
-    } else {
-        wrong(guessesSoFar);
-    }
+        wins++;
 
-    display();
-}
+        function resetGame(){
+            guessesRemaining = 10;
+            guessesSoFar=[];
+            compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+            };
+
+    } else if (guessesRemaining - 1 === 0){
+        losses++;
+
+        function resetGame(){
+            guessesRemaining = 10;
+            guessesSoFar=[];
+            compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+            };
+
+    } else {
+        guessesRemaining--;
+        guessesSoFar.push(userGuess);
+
+    }
 
     function display(){
 
-        var fillWins = document.querySelector('#wins');
-
-        var fillLosses = document.querySelector('#losses');
-
-        var fillGuessesRemaining = document.querySelector('#guessesRemaining');
-
-        var fillLettersGuessed = document.querySelector('#guessesSoFar');
-
-        fillWins.innerHTML = wins;
-
-        fillLosses.innerHTML = losses;
-
-        fillGuessesRemaining.innerHTML = guessesRemaining;
-
-        fillLettersGuessed.innerHTML = guessesSoFar.join();
-    }
-
-    function wins() {
-        wins++;
-        resetGame();
-    }  
-
-    function losses() {
-        losses++;
-        resetGame();
-    }
+         fillWins = document.querySelector('#wins').innerHTML = wins;
     
-    function wrong(guessesSoFar) {
-        guessesRemaining--;
-        alphabet.push(guessedLetters);
-    }  
-
-    function resetGame() {
-        guessesRemaining = 10;
-        guessedLetters=[];
-        wins=0;
-        losses=0;
-        compLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
+         fillLosses = document.querySelector('#losses').innerHTML = losses;
+    
+         fillGuessesRemaining = document.querySelector('#guessesRemaining').innerHTML = guessesRemaining;
+    
+         fillLettersGuessed = document.querySelector('#guessesSoFar').innerHTML = guessesSoFar.join();
+    
+        
     }
+};
+
     console.log(compLetter);
+    console.log(display());
+    console.log(event);
+    console.log(guessesRemaining);
+    console.log(guessesSoFar);
